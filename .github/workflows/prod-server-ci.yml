@@ -3,9 +3,9 @@ name: Dev Server CI
 on:
   pull_request:
     types: [ opened, synchronize, reopened ]
-    branches: [ develop ]
+    branches: [ main ]
   push:
-    branches: [ develop ]
+    branches: [ main ]
 
 
 jobs:
