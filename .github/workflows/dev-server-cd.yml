@@ -25,9 +25,9 @@ jobs:
 
       - name: Stop and remove existing container
         run: |
-          if [ "$(sudo docker ps -a -q -f name=moment-app-server)" ]; then
-            sudo docker stop moment-app-server
-            sudo docker rm -f moment-app-server
+          if [ "$(sudo docker ps -a -q -f name=basketball-app-server)" ]; then
+            sudo docker stop basketball-app-server
+            sudo docker rm -f basketball-app-server
           fi
 
       - name: Download artifact
@@ -43,13 +43,13 @@ jobs:
           echo "Deploying version: $(cat image-tag.txt)"
 
       - name: Pull latest image
-        run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/moment:${{ env.DEPLOY_TAG }}
+        run: sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/basketball:${{ env.DEPLOY_TAG }}
 
       - name: Deploy with Docker Compose
         env:
           IMAGE_TAG: ${{ env.DEPLOY_TAG }}
         run: |
-          cd /home/ubuntu/moment
+          cd /home/ubuntu/basketball
           
           echo "Deploying with image tag: $IMAGE_TAG"
           sudo -E docker compose up --no-deps -d app
